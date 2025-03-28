@@ -15,8 +15,10 @@ import java.util.List;
 @Getter
 @Setter
 public class Office {
+    //ตัวแรกเราต้องใส่ Id เพื่อบอกว่า officeCode เป็น primary key
     @Id
     private String officeCode;
+
     private String city;
     private String phone;
     private String addressLine1;
@@ -25,7 +27,13 @@ public class Office {
     private String country;
     private String postalCode;
     private String territory;
+
+    //ความสัมพันธ์
+    //map กับ private Office office; ใน employees
     @OneToMany(mappedBy = "office")
-    @JsonIgnore //ข้อมูลนี้จะไม่ถูก Generate เป็น Json
-    private List<Employee> employees;
+
+    //ข้อมูลนี้จะไม่ถูก Generate เป็น Json
+    @JsonIgnore
+
+    private List<Employee> employees; //1 office มีหลาย employess
 }
